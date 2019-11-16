@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "406481239602",
+    "firebase_url": "https://dars-ac6f6.firebaseio.com",
+    "project_id": "dars-ac6f6",
+    "storage_bucket": "dars-ac6f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406481239602:android:e72dae1a01eee33984462b",
+        "android_client_info": {
+          "package_name": "com.example.dars_360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406481239602-88sjrtta0g9q965o1dffnknsmqalahsv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dars_360",
+            "certificate_hash": "f889ae1a355609c7dcaa1bbeb2baa619a58476d3"
+          }
+        },
+        {
+          "client_id": "406481239602-4ubsdordoqb0t6ugi33e8f0lb49rg4u9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuITFgsa6ehZOBSFBza4UOGz4iZQWrRUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406481239602-4ubsdordoqb0t6ugi33e8f0lb49rg4u9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
