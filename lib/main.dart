@@ -1,6 +1,10 @@
 
+import 'package:dars_360/pages/schedual.dart';
 import 'package:dars_360/pages/splashscreen.dart';
 import 'package:flutter/material.dart';
+
+import 'ApiProvider.dart';
+import 'models/classTimeTable_model.dart';
 
 
 void main() => runApp(MyApp(
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      home: SplashScreen(),
+      home:SplashScreen(),
     );
   }
 }

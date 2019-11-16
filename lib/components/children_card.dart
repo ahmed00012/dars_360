@@ -44,10 +44,16 @@ class _ChildState extends State<Child> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
-        body: ListView.builder(
-          itemCount: students.length,
-          itemBuilder: _buildItemsForListView,
+      appBar: AppBar(
+        title: Text("مرحبا"),
+        centerTitle: true,
+      ),
+        body: Directionality(
+          textDirection: TextDirection.rtl,
+          child: ListView.builder(
+            itemCount: students.length,
+            itemBuilder: _buildItemsForListView,
+          ),
         )
     );
   }

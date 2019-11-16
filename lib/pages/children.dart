@@ -15,11 +15,6 @@ class _ChildrenState extends State<Children> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text( text + " مرحبا"),
-        centerTitle: true,
-      ),
       body: new Container(
 
          child: Child(),

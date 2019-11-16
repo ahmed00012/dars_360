@@ -1,89 +1,91 @@
-import 'dart:convert';
-
-import 'package:dars_360/components/Schedual_card.dart';
-import 'package:dars_360/models/schedual_model.dart';
+import 'package:dars_360/models/classTimeTable_model.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart'as http;
+
+import '../ApiProvider.dart';
+
 class Schedual extends StatefulWidget {
   @override
   _SchedualState createState() => _SchedualState();
 }
 
 class _SchedualState extends State<Schedual> {
-  List<Data> _list = [];
-  var loading = false;
-  Future<Null> _fetchData() async {
-    setState(() {
-      loading = true;
-    });
-    final response =
-    await http.get("http://api.dars360.v3.com.darsint.arvixededicated.com/Student/ClassTimeTable/get?BranchID=1&IsoName=ar&StudentID=10029&Date=2019/10/10");
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      setState(() {
-        for (Map i in data) {
-          _list.add(Data.fromJson(i));
-        }
-        loading = false;
-      });
-    }
-  }
+  List<ClassTimeTableModel> classTimeTableList = List<ClassTimeTableModel>();
+  bool isLoading = true;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _fetchData();
+    getAss();
+  }
+
+  void getAss() async {
+    classTimeTableList = await ApiProvider().getClassTimeTable();
+    isLoading = false;
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-      ),
-      body: Container(
-        child: loading
-            ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-          itemCount: _list.length,
-          itemBuilder: (context, i) {
-            final x = _list[i];
-            return Container(
-              padding: EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(x.dayName),
-
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(
-                    "Address",
-                    style: TextStyle(
-                        fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-                  Text(x.period.periodName),
-                  Text(x.period.startTime),
-                  Text(x.period.endTime),
-                  Text(x.period.subjectName),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(
-                    "Company",
-                    style: TextStyle(
-                        fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-
-
-                ],
-              ),
-            );
-          },
+        appBar: AppBar(
+          elevation: 0.0,
+          title: Text(
+            "جدول الحصص",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
         ),
-      ),
-    );
+        body: isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Column(
+                  children: classTimeTableList
+                      .map((i) => Column(
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        color: Colors.blue,
+                        alignment: Alignment.center,
+                        child: Text("${i.dayName}",),
+                      ),
+                      Column(
+                        children: i.periodList.map(
+                            (k) =>
+                                Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width*0.2,
+                                          child: Text("${k.subjectName}"),
+                                        ),
+                                        Row(
+                                          children: <Widget>[
+                                            Text("${k.startTime}"),
+                                            Text("-"),
+                                            Text("${k.endTime}"),
+                                          ],
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width*0.2,
+                                          alignment: Alignment.centerRight,
+                                          child: Text("${k.periodName}"),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                )
+                        ).toList(),
+                      )
+                    ],
+                  ))
+                      .toList(),
+                ),
+              ));
   }
 }

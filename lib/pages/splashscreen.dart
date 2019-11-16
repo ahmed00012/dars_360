@@ -36,41 +36,7 @@ class _SplashScreen extends State<SplashScreen>{
 
     // TODO: implement build
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Container(
-           decoration: BoxDecoration(color: Colors.white),
-
-          ),
-
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Expanded(child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset('images/dars.png',
-                    height: 200,
-                    width: 400,)
-
-
-                  ],
-                ),
-              )
-              ),
-              Expanded(child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new CircularProgressIndicator(
-                  )
-                ],
-              ))
-            ],
-          )
-        ],
-      ),
+      body: Text("a",style: TextStyle(color: Color(0xFF000f00)),),
     );
   }
 
